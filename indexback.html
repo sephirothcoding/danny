@@ -94,33 +94,17 @@
 <div id="backgrounds-gallery" class="gallery"></div>
 
 <script>
-    async function fetchBackgrounds() {
-        // Simulăm un API sau o funcție server-side pentru a prelua imaginile
-        const response = await fetch('your-api-endpoint-to-fetch-backgrounds'); // Înlocuiește cu calea corectă
-        if (!response.ok) {
-            console.error('Failed to fetch images');
-            return [];
-        }
+    function loadBackgrounds() {
+        // Lista de imagini disponibile
+        const backgrounds = [
+            ['inner1.png', 'outer1.png'],
+            ['inner2.png', 'outer2.png']
+        ];
 
-        const data = await response.json();
-        return data.files.filter(file => file.includes('inner') || file.includes('outer'));  // Filtrăm imaginile inner și outer
-    }
-
-    function groupBackgrounds(backgroundNames) {
-        const grouped = [];
-        const sorted = backgroundNames.sort(); // Asigurăm că sunt sortate corect inner1, outer1, inner2, outer2, etc.
-
-        for (let i = 0; i < sorted.length; i += 2) {
-            grouped.push([sorted[i], sorted[i + 1]]);  // Grupăm inner și outer împreună
-        }
-        return grouped;
-    }
-
-    function createGallery(backgroundGroups) {
         const gallery = document.getElementById('backgrounds-gallery');
         gallery.innerHTML = ''; // Golim galeria
 
-        backgroundGroups.forEach((group, index) => {
+        backgrounds.forEach((backgroundSet, index) => {
             const row = document.createElement('div');
             row.classList.add('gallery-row');
 
@@ -128,7 +112,7 @@
             const innerItem = document.createElement('div');
             innerItem.classList.add('gallery-item');
             const innerImg = document.createElement('img');
-            innerImg.src = `backgrounds/${group[0]}`;
+            innerImg.src = `backgrounds/${backgroundSet[0]}`;  // Asigură calea corectă către folderul `backgrounds`
             innerImg.alt = `inner${index + 1}`;
             const innerName = document.createElement('div');
             innerName.classList.add('name');
@@ -140,7 +124,7 @@
             const outerItem = document.createElement('div');
             outerItem.classList.add('gallery-item');
             const outerImg = document.createElement('img');
-            outerImg.src = `backgrounds/${group[1]}`;
+            outerImg.src = `backgrounds/${backgroundSet[1]}`;  // Asigură calea corectă către folderul `backgrounds`
             outerImg.alt = `outer${index + 1}`;
             const outerName = document.createElement('div');
             outerName.classList.add('name');
@@ -165,15 +149,10 @@
         });
     }
 
-    async function loadBackgrounds() {
-        const backgroundNames = await fetchBackgrounds();
-        const groupedBackgrounds = groupBackgrounds(backgroundNames);
-        createGallery(groupedBackgrounds);
-    }
+    // Reîncarcă imaginile la fiecare 5 secunde
+    setInterval(loadBackgrounds, 5000);
 
-    // Reîmprospătăm imaginile periodic pentru a prelua noi seturi
-    setInterval(loadBackgrounds, 5000);  // Reîncarcă la fiecare 5 secunde
-
+    // Încarcă imaginile inițial
     loadBackgrounds();
 </script>
 
