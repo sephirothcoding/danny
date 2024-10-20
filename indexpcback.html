@@ -29,13 +29,6 @@
             animation: textGlow 1.5s ease-in-out infinite;
         }
 
-        h2 {
-            color: #005B9A; /* Darker Sky Blue */
-            font-size: 2em;
-            text-align: center;
-            margin-top: 40px;
-        }
-
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -54,6 +47,7 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue Glow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: calc(50% - 40px); /* Două imagini pe rând */
         }
 
         .gallery-item:hover {
@@ -62,8 +56,8 @@
         }
 
         .gallery-item img {
-            width: 728px;
-            height: 486px;
+            width: 100%;
+            height: auto;
             border-radius: 10px;
             transition: opacity 0.5s ease;
         }
@@ -94,13 +88,9 @@
 
 <script>
     function loadImages() {
-        const imageNames = [
-            'pcback1.png',
-            'pcback2.png',
-            'pcback3.png',
-            'pcback4.png',
-            'pcback5.png'
-        ];
+        // Preluăm imaginile dintr-un folder
+        const numberOfImages = 50;  // Setați numărul de imagini dorit
+        const imageNames = Array.from({ length: numberOfImages }, (_, i) => `pcback${i + 1}.png`);
 
         const gallery = document.getElementById('pcback-gallery');
         gallery.innerHTML = ''; // Golim galeria
@@ -123,6 +113,16 @@
             imgItem.appendChild(img);
             imgItem.appendChild(name);
             gallery.appendChild(imgItem);
+        });
+
+        // Derulăm automat la ultima imagine
+        scrollToBottom();
+    }
+
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
         });
     }
 
