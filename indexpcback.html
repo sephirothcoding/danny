@@ -87,11 +87,19 @@
 <div id="pcback-gallery" class="gallery"></div>
 
 <script>
-    function loadImages() {
-        // Preluăm imaginile dintr-un folder
-        const numberOfImages = 50;  // Setați numărul de imagini dorit
-        const imageNames = Array.from({ length: numberOfImages }, (_, i) => `pcback${i + 1}.png`);
+    async function fetchPcBacks() {
+        // Simulăm un API care preia imaginile dintr-un folder local
+        const response = await fetch('your-api-endpoint-or-local-server-to-fetch-images');  // Înlocuiește cu calea reală
+        if (!response.ok) {
+            console.error('Failed to fetch images');
+            return [];
+        }
 
+        const data = await response.json();
+        return data.files.filter(file => file.endsWith('.png'));  // Filtrăm doar fișierele PNG
+    }
+
+    function createGallery(imageNames) {
         const gallery = document.getElementById('pcback-gallery');
         gallery.innerHTML = ''; // Golim galeria
 
@@ -101,8 +109,8 @@
 
             // Creăm elementul img
             const img = document.createElement('img');
-            img.src = `pcback/${imageName}`;
-            img.alt = imageName;
+            img.src = `pcback/${imageName}`;  // Preluăm imaginile din folderul local
+            img.alt = `pcback${index + 1}`;
 
             // Afișăm numele imaginii
             const name = document.createElement('div');
@@ -125,6 +133,14 @@
             behavior: 'smooth'
         });
     }
+
+    async function loadImages() {
+        const imageNames = await fetchPcBacks();
+        createGallery(imageNames);
+    }
+
+    // Verificăm periodic dacă sunt adăugate noi imagini în folder
+    setInterval(loadImages, 5000);  // Reîncarcă la fiecare 5 secunde
 
     loadImages();
 </script>
