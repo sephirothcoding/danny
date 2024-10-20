@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: url('https://xatimg.com/image/5p0P2zxVZMkt.png') no-repeat center center fixed;
+            background: url('https://xatimg.com/image/HyYWMau5wJMA.png') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -19,18 +19,18 @@
 
         h1 {
             margin-top: 20px;
-            color: #FF6347; /* Red */
-            text-shadow: 0 0 10px rgba(255, 99, 71, 0.7); /* Red Glow */
+            color: #005B9A; /* Darker Sky Blue */
+            text-shadow: 0 0 10px rgba(0, 91, 154, 0.7); /* Darker Sky Blue Glow */
             font-size: 3em;
             font-weight: bold;
-            background: linear-gradient(135deg, #FF6347, #8B0000); /* Red Shades */
+            background: linear-gradient(135deg, #005B9A, #87CEEB); /* Sky Blue Gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: textGlow 1.5s ease-in-out infinite;
         }
 
         h2 {
-            color: #FF6347; /* Red */
+            color: #005B9A; /* Darker Sky Blue */
             font-size: 2em;
             text-align: center;
             margin-top: 40px;
@@ -48,17 +48,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 2px solid #000000; /* Black */
+            border: 2px solid #FFFFFF; /* White */
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.8); /* Black */
+            background-color: rgba(255, 255, 255, 0.8); /* White */
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Red Glow */
+            box-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue Glow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 1); /* Stronger Red Glow */
+            box-shadow: 0 0 30px rgba(135, 206, 235, 1); /* Stronger Sky Blue Glow */
         }
 
         .gallery-item img {
@@ -74,16 +74,16 @@
 
         .name {
             margin-top: 5px;
-            color: #FF6347; /* Red */
+            color: #005B9A; /* Darker Sky Blue */
             font-weight: bold;
             font-size: 1.1em;
-            text-shadow: 0 0 5px rgba(255, 99, 71, 0.7); /* Red Glow */
+            text-shadow: 0 0 5px rgba(0, 91, 154, 0.7); /* Darker Sky Blue Glow */
         }
 
         @keyframes textGlow {
-            0% { text-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
-            50% { text-shadow: 0 0 15px rgba(255, 99, 71, 1); }
-            100% { text-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
+            0% { text-shadow: 0 0 5px rgba(0, 91, 154, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(0, 91, 154, 1); }
+            100% { text-shadow: 0 0 5px rgba(0, 91, 154, 0.5); }
         }
     </style>
 </head>
@@ -95,11 +95,11 @@
 <script>
     function loadImages() {
         const imageNames = [
-            'PcBack1.png',
-            'PcBack2.png',
-            'PcBack3.png',
-            'PcBack4.png',
-            'PcBack5.png'
+            'pcback1.png',
+            'pcback2.png',
+            'pcback3.png',
+            'pcback4.png',
+            'pcback5.png'
         ];
 
         const gallery = document.getElementById('pcback-gallery');
@@ -111,13 +111,13 @@
 
             // Creăm elementul img
             const img = document.createElement('img');
-            img.src = `PcBack/${imageName}`;
+            img.src = `pcback/${imageName}`;
             img.alt = imageName;
 
             // Afișăm numele imaginii
             const name = document.createElement('div');
             name.classList.add('name');
-            name.textContent = `PcBack ${index + 1}`;
+            name.textContent = `pcback ${index + 1}`;
 
             // Adaugă imaginea și numele la galerie
             imgItem.appendChild(img);
