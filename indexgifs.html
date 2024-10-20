@@ -144,7 +144,7 @@
 <script>
     async function fetchGifs() {
         const repoOwner = 'sephirothcoding';  // Numele de utilizator GitHub
-        const repoName = 'STORE';             // Numele repository-ului
+        const repoName = 'danny';             // Numele repository-ului
         const gifFolder = 'gifs';             // Folderul cu GIF-uri din repository
         const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${gifFolder}`;
         
@@ -188,7 +188,7 @@
 
             // Încarcă imaginea GIF
             const img = document.createElement('img');
-            img.src = `https://raw.githubusercontent.com/sephirothcoding/STORE/main/gifs/${gifName}`;
+            img.src = `https://raw.githubusercontent.com/sephirothcoding/danny/main/gifs/${gifName}`;
             img.alt = gifName;
 
             // Afișează numele GIF-ului
