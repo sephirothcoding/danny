@@ -34,6 +34,8 @@
     // Seph'ten (1538769249) doğrudan satın alınmadıkça hiçbir şekilde kullanılamaz, kopyalanamaz veya dağıtılamaz.
     // Kullanım, yalnızca xat.com ile sınırlıdır ve sahibin açık onayını gerektirir.
     // İzinsiz kullanım yasaktır ve yasal işlemlere tabidir. -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,13 +65,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: textGlow 1.5s ease-in-out infinite;
-        }
-
-        h2 {
-            color: #005B9A; /* Darker Sky Blue */
-            font-size: 2em;
-            text-align: center;
-            margin-top: 40px;
         }
 
         .gallery {
@@ -116,14 +111,6 @@
             text-shadow: 0 0 5px rgba(0, 91, 154, 0.7); /* Darker Sky Blue Glow */
         }
 
-        .price {
-            margin-top: 10px;
-            color: #005B9A; /* Darker Sky Blue */
-            font-weight: bold;
-            font-size: 1.2em;
-            text-shadow: 0 0 5px rgba(0, 91, 154, 0.7); /* Darker Sky Blue Glow */
-        }
-
         @keyframes textGlow {
             0% { text-shadow: 0 0 5px rgba(0, 91, 154, 0.5); }
             50% { text-shadow: 0 0 15px rgba(0, 91, 154, 1); }
@@ -134,20 +121,16 @@
 <body>
 
 <h1>Galerie GIF-uri</h1>
-
-<h2>Blufftitler Gifs</h2>
-<div id="bt-gallery" class="gallery"></div>
-
-<h2>After Effects Gifs</h2>
-<div id="af-gallery" class="gallery"></div>
+<div id="gif-gallery" class="gallery"></div>
 
 <script>
     async function fetchGifs() {
+        // Acest cod presupune că ai acces la o API sau o sursă de unde preiei numele fișierelor
         const repoOwner = 'sephirothcoding';  // Numele de utilizator GitHub
         const repoName = 'danny';             // Numele repository-ului
         const gifFolder = 'gifs';             // Folderul cu GIF-uri din repository
         const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${gifFolder}`;
-        
+
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error('Network response was not ok');
@@ -163,58 +146,44 @@
         }
     }
 
-    function extractNumber(fileName) {
-        const match = fileName.match(/\d+/);  // Extrage numărul din numele fișierului
-        return match ? parseInt(match[0], 10) : 0;
-    }
-
-    function categorizeAndSortGifs(gifNames) {
-        const btGifs = gifNames
-            .filter(name => name.startsWith('Bt'))
-            .sort((a, b) => extractNumber(b) - extractNumber(a));  // Sortare descrescătoare
-        const afGifs = gifNames
-            .filter(name => name.startsWith('Af'))
-            .sort((a, b) => extractNumber(b) - extractNumber(a));  // Sortare descrescătoare
-        return { btGifs, afGifs };
-    }
-
-    function createGallery(gifNames, galleryId, price, prefix) {
-        const gallery = document.getElementById(galleryId);
+    function createGallery(gifNames) {
+        const gallery = document.getElementById('gif-gallery');
         gallery.innerHTML = ''; // Golim galeria
 
         gifNames.forEach((gifName, index) => {
             const gifItem = document.createElement('div');
             gifItem.classList.add('gallery-item');
 
-            // Încarcă imaginea GIF
+            // Creăm elementul img pentru GIF
             const img = document.createElement('img');
-            img.src = `https://raw.githubusercontent.com/sephirothcoding/danny/main/gifs/${gifName}`;
-            img.alt = gifName;
+            img.src = `gifs/${gifName}`;  // Presupunem că fișierele sunt într-un folder local `gifs`
+            img.alt = `gif${index + 1}`;
 
-            // Afișează numele GIF-ului
+            // Numele GIF-ului secvențial
             const name = document.createElement('div');
             name.classList.add('name');
-            name.textContent = `${prefix} (${extractNumber(gifName)})`;  // Folosim numărul corect
+            name.textContent = `gif${index + 1}`;
 
-            // Adaugă prețul sub GIF
-            const priceDiv = document.createElement('div');
-            priceDiv.classList.add('price');
-            priceDiv.textContent = `Price: ${price} xats`;
-
-            // Afișăm imaginea, numele și prețul
+            // Adăugăm GIF-ul și numele la galerie
             gifItem.appendChild(img);
             gifItem.appendChild(name);
-            gifItem.appendChild(priceDiv);
             gallery.appendChild(gifItem);
+        });
+
+        // Derulăm automat la ultima imagine
+        scrollToBottom();
+    }
+
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
         });
     }
 
     async function loadGifs() {
         const gifNames = await fetchGifs();
-        const { btGifs, afGifs } = categorizeAndSortGifs(gifNames);
-
-        createGallery(btGifs, 'bt-gallery', 300, 'Bt');
-        createGallery(afGifs, 'af-gallery', 500, 'Af');
+        createGallery(gifNames);
     }
 
     loadGifs();
@@ -222,4 +191,3 @@
 
 </body>
 </html>
-
