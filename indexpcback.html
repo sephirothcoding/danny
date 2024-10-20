@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galerie Imagini</title>
+    <title>Galerie Imagini PcBack</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -87,19 +87,9 @@
 <div id="pcback-gallery" class="gallery"></div>
 
 <script>
-    async function fetchPcBacks() {
-        // Simulăm un API care preia imaginile dintr-un folder local
-        const response = await fetch('your-api-endpoint-or-local-server-to-fetch-images');  // Înlocuiește cu calea reală
-        if (!response.ok) {
-            console.error('Failed to fetch images');
-            return [];
-        }
+    function loadImages() {
+        const imageNames = ['pcback1.png', 'pcback2.png'];  // Adăugăm manual imaginile
 
-        const data = await response.json();
-        return data.files.filter(file => file.endsWith('.png'));  // Filtrăm doar fișierele PNG
-    }
-
-    function createGallery(imageNames) {
         const gallery = document.getElementById('pcback-gallery');
         gallery.innerHTML = ''; // Golim galeria
 
@@ -109,7 +99,7 @@
 
             // Creăm elementul img
             const img = document.createElement('img');
-            img.src = `pcback/${imageName}`;  // Preluăm imaginile din folderul local
+            img.src = `pcback/${imageName}`;  // Asigurăm calea corectă către folderul local 'pcback'
             img.alt = `pcback${index + 1}`;
 
             // Afișăm numele imaginii
@@ -133,14 +123,6 @@
             behavior: 'smooth'
         });
     }
-
-    async function loadImages() {
-        const imageNames = await fetchPcBacks();
-        createGallery(imageNames);
-    }
-
-    // Verificăm periodic dacă sunt adăugate noi imagini în folder
-    setInterval(loadImages, 5000);  // Reîncarcă la fiecare 5 secunde
 
     loadImages();
 </script>
