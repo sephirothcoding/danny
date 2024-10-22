@@ -1,18 +1,17 @@
-Rezumat informativ pentru proiect DEDO:
+Riepilogo informativo per il progetto Dany:
 
-1. **Pagina de GIF-uri (Galerie GIF-uri)**:
-   - **Folderul** din care se încarcă automat gif-urile se numește: `gifs`.
-   - Fiecare GIF este încărcat din repository-ul GitHub, iar numele lor trebuie să respecte următoarea convenție:
-     - GIF-urile Blufftitler: `Bt<number>.gif` (ex. `Bt1.gif`, `Bt2.gif` etc.).
-     - GIF-urile After Effects: `Af<number>.gif` (ex. `Af1.gif`, `Af2.gif` etc.).
-   - GIF-urile sunt sortate și afișate în două categorii: Blufftitler și After Effects.
+Pagina dei GIF (Galleria GIF):
 
-2. **Pagina de PcBack (Galerie PcBack)**:
-   - **Folderul** din care se încarcă automat imaginile se numește: `PcBack`.
-   - Fiecare imagine PcBack trebuie să aibă numele `PcBack<number>.png` (ex. `PcBack1.png`, `PcBack2.png` etc.).
-   - Imaginile sunt încărcate automat și afișate în galerie folosind această convenție de denumire.
+La cartella da cui vengono caricati automaticamente i GIF si chiama: gifs.
+Ogni GIF deve avere il nome gif<number> (es. gif1.gif, gif2.gif ecc.).
+Pagina PcBack (Galleria PcBack):
 
-3. **Pagina de PstyleGif (Galerie Pstyle)**:
-   - **Folderul** din care se încarcă automat imaginile se numește: `pstyle`.
-   - Fiecare imagine de tip Pstyle trebuie să aibă numele `pstyle<number>.png` (ex. `pstyle1.png`, `pstyle2.png` etc.).
-   - Imaginile sunt afișate automat din acest folder, folosind numele prestabilit.
+La cartella da cui vengono caricate automaticamente le immagini si chiama: pcback.
+Ogni immagine PcBack deve avere il nome pcback<number>.png (es. pcback1.png, pcback2.png ecc.).
+Pagina Backgrounds (Galleria Backgrounds):
+
+La cartella da cui vengono caricate automaticamente le immagini si chiama: backgrounds.
+Le immagini sono organizzate in set e denominate come segue: inner<number> e outer<number> (es. inner1.png, outer1.png, inner2.png, outer2.png ecc.).
+
+
+Questo progetto o una sua copia non può essere offerto ad altri membri all'infuori di xDany81 per il quale è stato venduto.
